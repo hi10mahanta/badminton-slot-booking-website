@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
+    <title>Book a Badminton Slot</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    
+</head>
+<body>
+    <header>
+        <img src="https://dibru.ac.in/wp-content/uploads/2023/11/websitelogo.png?2024030407" alt="DU Logo">
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>    
+    
+
+    <main><div class="hero">
+        <div class="container">
+        <section id="home">
+            <h1>Book a Badminton Slot</h1>
+            <form id="bookingForm" action="/api/books" method="post">               <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" required>
+
+                <label for="time">Time:</label>
+                <select id="time" name="time" required>
+                    <option value="">Select Time</option>
+                    <option value="09:00">09:00</option>
+                    <option value="10:00">10:00</option>
+                    <option value="11:00">11:00</option>
+                    <option value="12:00">12:00</option>
+                    <option value="13:00">13:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="15:00">15:00</option>
+                    <option value="16:00">16:00</option>
+                    <option value="17:00">17:00</option>
+                    <option value="18:00">18:00</option>
+                </select>
+
+                <label for="level">Level:</label>
+                <select id="level" name="level" required>
+                    <option value="">Select Level</option>
+                    <option value="beginner">Beginner</option>
+                    <option value="intermediate">Intermediate</option>
+                    <option value="advanced">Advanced</option>
+                </select>
+            
+                <input type="submit" value="Book Now">
+            </form><div id="#background-image"></div>
+        </section></div></div>
+        <section id="about">
+            <h2><b>About Dibrugarh University Badminton Stadium</b></h2>
+            <p>The Dibrugarh University badminton stadium is a modern, state-of-the-art sports facility that is open to students, faculty, and staff of the university. It is equipped with top-of-the-line badminton courts and amenities, making it an ideal place for players of all levels to practice and compete.
+
+In addition to being a hub for badminton, the stadium is also home to a variety of other sports and fitness programs, including yoga and aerobics classes. The stadium is committed to promoting a healthy, active lifestyle and offers something for everyone.</p>
+        </section>
+        <section id="stadium-info">
+            <h2>Stadium Information</h2><a href="https://www.google.co.in/maps/place/DU+Indoor+Stadium/@27.4499837,94.8789768,15z/data=!4m10!1m2!2m1!1sdirugarh+university+badminton+stadium!3m6!1s0x3740a2b2275821f1:0x78f8eec7229604a4!8m2!3d27.4499837!4d94.8980312!15sCiZkaWJydWdhcmggdW5pdmVyc2l0eSBiYWRtaW50b24gc3RhZGl1bZIBEWluZG9vcl9wbGF5Z3JvdW5k4AEA!16s%2Fg%2F11c6mglbnd?entry=ttu"> <b>click here</b>  to find the location</a>
+            <p>The DU INDOOR STADIUM (badminton stadium is located on the east side of the campus). <br><b>CVXX+X6R, Behia Chetia Gaon, Assam 786004</b>It has 2 courts available for booking and is open from 09:00 AM to 08:00 PM .</p>
+        </section>
+        
+            
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/8dTnHIFg8yE?si=J8sXXirg_slah75a" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </section>
+        
+        
+    </main>
+    <footer>
+        <div class="container">
+            <section id="contact">
+                <h2>Contact Us</h2>
+                <ul><li>For any inquiry you can contact via </li>
+                    <li>Email: hitenmahanta199@gmail.com</li>
+                    <li>Phone: 8822051512</li>
+                </ul>
+            </section>
+        </div>
+    </footer>
+    <script>
+        document.getElementById('bookingForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(this);
+            
+            fetch('http://localhost:5000/api/books', 
+               { method: 'POST',
+                body: formData  })
+            
+            .then(response => {
+                console.log('Response received:',response);
+                return response.json();
+            })    
+            .then(data => {
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    alert(data.message);
+                    // Clear the form fields
+                    this.reset();
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while submitting the form.');
+            });
+            
+        });
+    </script>
+</body>
+</html>

@@ -56,35 +56,6 @@ In addition to being a hub for badminton, the stadium is also home to a variety 
             </section>
         </div>
     </footer>
-    <script>
-        document.getElementById('bookingForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            
-            const formData = new FormData(this);
-            
-            fetch('http://localhost:5000/api/books', 
-               { method: 'POST',
-                body: formData  })
-            
-            .then(response => {
-                console.log('Response received:',response);
-                return response.json();
-            })    
-            .then(data => {
-                if (data.error) {
-                    alert(data.error);
-                } else {
-                    alert(data.message);
-                    // Clear the form fields
-                    this.reset();
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('An error occurred while submitting the form.');
-            });
-            
-        });
-    </script>
+   
 </body>
 </html>
